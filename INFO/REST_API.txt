@@ -1,5 +1,5 @@
 
-REST API User
+REST API
 ---------------------
 
 Postman для тесту REST API

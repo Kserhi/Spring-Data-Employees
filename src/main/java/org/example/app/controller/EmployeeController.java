@@ -3,7 +3,7 @@ package org.example.app.controller;
 import org.example.app.entity.employee.Employee;
 import org.example.app.network.ResponseData;
 import org.example.app.network.ResponseMessage;
-import org.example.app.service.UserService;
+import org.example.app.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +13,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
-public class UserController {
+public class EmployeeController {
 
     @Autowired
-    UserService service;
+    EmployeeService service;
 
     @PostMapping("/employees")
     public ResponseData save(@RequestBody Employee employee) {
@@ -33,9 +33,9 @@ public class UserController {
     @GetMapping("/employees")
     public ResponseData getAll() {
         Optional<List<Employee>> optional = service.getAll();
-        return optional.map(users ->
+        return optional.map(employees ->
                 new ResponseData(HttpStatus.OK.toString(),
-                        true, users))
+                        true, employees))
                 .orElseGet(() ->
                         new ResponseData(HttpStatus.NOT_FOUND.toString(),
                                 false,
